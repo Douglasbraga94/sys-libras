@@ -1,8 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
 @import 'themes';
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootswatch/dist/minty/variables";
+@import "../node_modules/bootswatch/dist/minty/bootswatch";
 
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
 @import '~@nebular/theme/styles/globals';
 
-@include nb-install() {
-  @include nb-theme-global();
-};
-/* You can add global styles to this file, and also import other style files */
+@include nb-install(){
+    @include nb-theme-global();
+}

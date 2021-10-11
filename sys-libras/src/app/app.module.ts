@@ -9,10 +9,13 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { LoginComponent } from './components/public/login/login.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,8 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
     NbEvaIconsModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
-    FormlyBootstrapModule
+    FormlyBootstrapModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
