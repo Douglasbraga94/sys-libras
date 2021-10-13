@@ -1,3 +1,4 @@
+import { BaseModule } from './../../../shared/base/base.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,7 @@ import { InterpretesComponent } from './interpretes.component';
     InterpretesComponent
   ],
   imports: [
-    CommonModule,
+    BaseModule,
     InterpretesRoutingModule
   ]
 })
