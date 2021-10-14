@@ -11,6 +11,7 @@ export class DataBaseService<T extends Base> implements CrudI<T>{
 
     constructor(table: string){
         this.supabase = createClient(this.SUPABASE_URL, this.SUPABASE_KEY);
+        this.table = table;
     }
 
     
@@ -23,6 +24,7 @@ export class DataBaseService<T extends Base> implements CrudI<T>{
     }
     
     async getAll(limit?: number) {
+        
         const query = this.supabase.from<T>(this.table).select('*');
         if(limit){
             query.limit(limit)

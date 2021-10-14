@@ -10,6 +10,11 @@ const routes: Routes = [
         path: 'interpretes',
         loadChildren: () => import('../interpretes/interpretes.module')
           .then((m) => m.InterpretesModule)
+      },
+      {
+        path: 'regional',
+        loadChildren: () => import('../regional/regional.module')
+          .then((m) => m.RegionalModule)
       }
 
     ]

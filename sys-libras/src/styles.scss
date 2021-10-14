@@ -10,3 +10,14 @@
 @include nb-install(){
     @include nb-theme-global();
 }
+:root{
+.action-footer{
+    display: flex;
+    justify-content: flex-end;
+
+    button{
+        margin-left: 10px;
+        width: 120px;
+    }
+}
+}

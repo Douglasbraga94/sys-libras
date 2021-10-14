@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
       {
         title: 'Regionais',
         icon: 'home',
-        link: 'regionais'
+        link: 'regional'
       },
       {
         title: 'Intérpretes',

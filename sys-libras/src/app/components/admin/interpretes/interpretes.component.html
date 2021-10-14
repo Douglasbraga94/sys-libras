@@ -1,1 +1,67 @@
-<p>interpretes works!</p>
+<div class="p-1">
+    <div class="card col-lg-12">
+        <div class="card-header">
+            <h3>Congregação Cristã no Brasil - Cadastro de intérpretes de libras
+            <button type="button" (click)="add()" class="btn btn-outline-info btn-lg">
+                <i class="fa fa-plus-circle"></i>
+            </button>
+        </h3>
+        </div>
+    </div>
+
+    <div class="col-lg-4 m-2" >
+        <div>
+            <h4>Regional: {{regional}}</h4>
+        </div>
+    </div>
+
+    <div *ngIf="view == 'table'" class="p-1 col-lg-12">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center">Nome</th>
+                    <th class="text-center">E-mail</th>
+                    <th class="text-center">Açoes</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let interprete of interpretes"> 
+                    <td class="text-center" style="padding-top: 20px;">{{interprete.nome}}</td>
+                    <td class="text-center" style="padding-top: 20px;">{{interprete.email}}</td>
+                    <td class="text-center m-mp-2">
+                        <button type="button" (click)="selecion(interprete)" class="btn btn-success btn-sm m-1">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" (click)="remove(interprete)" class="btn btn-danger btn-sm">
+                            <i class="fa fa-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <nb-card *ngIf="view == 'form'" status="success">
+        <nb-card-header>Dados Cadastrais</nb-card-header>
+        <nb-card-body>
+            <form [formGoup]="form">
+                <formly-form [model]="model" [fields]="fields" [form]="form" ></formly-form>
+            </form>
+        </nb-card-body>
+
+        <nb-card-footer class="action-footer">
+            <button [disabled]="!form.valid" type="button" class="btn btn-primary btn-md" (click)="save()" >
+                <i class="fa fa-check-circle"></i>
+                {{edit ? "atualizar" : "Salvar"}}
+            </button>
+            <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
+                <i class="fa fa-window-close"></i>
+                Cancelar
+            </button>
+        </nb-card-footer>
+    </nb-card>
+
+
+</div>
