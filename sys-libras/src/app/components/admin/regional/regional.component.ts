@@ -343,7 +343,7 @@ export class RegionalComponent implements OnInit {
     var regional = this.regionaisSelect.filter((item)=>{
       return item.id == idregional;
     })
-    return regional[0].nome;
+    return regional[0];
   }
 
   buscaAdministracao(idadministracao:string){
