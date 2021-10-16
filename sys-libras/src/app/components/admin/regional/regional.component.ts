@@ -31,6 +31,7 @@ export class RegionalComponent implements OnInit {
   comuns: Comum[];
   fields: FormlyFieldConfig[];
   fieldsAdm: FormlyFieldConfig[];
+  fieldsComum: FormlyFieldConfig[];
 
 
   constructor(
@@ -51,8 +52,12 @@ export class RegionalComponent implements OnInit {
     this.administracaoService
     .getAll(10)
     .then((dados)=> this.administracoes = dados.data);    
+    this.comumService
+    .getAll(10)
+    .then((dados)=> this.comuns = dados.data); 
     this.buildForm();
     this.buildFormAdm();
+    this.buildFormComum();
     this.view = 'inicio';
   }
 
@@ -119,7 +124,7 @@ export class RegionalComponent implements OnInit {
   }
 
   buildFormComum(){
-    this.fieldsAdm = [
+    this.fieldsComum = [
       {
         key: 'idadministracao',
         type: 'select',
@@ -350,7 +355,7 @@ export class RegionalComponent implements OnInit {
     var administracao = this.administracoesSelect.filter((item)=>{
       return item.id == idadministracao;
     })
-    return administracao[0].nome;
+    return administracao[0];
   }
 
 

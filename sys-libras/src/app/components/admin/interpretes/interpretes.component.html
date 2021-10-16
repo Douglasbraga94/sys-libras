@@ -2,7 +2,7 @@
     <div class="card col-lg-12">
         <div class="card-header">
             <h3>Congregação Cristã no Brasil - Cadastro de intérpretes de libras
-            <button type="button" (click)="add()" class="btn btn-outline-info btn-lg">
+            <button *ngIf="view =='table'" type="button" (click)="add()" class="btn btn-outline-info btn-lg">
                 <i class="fa fa-plus-circle"></i>
             </button>
         </h3>
@@ -19,16 +19,29 @@
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
+                    <th class="text-center">Código</th>
+                    <th class="text-center">Status</th>
                     <th class="text-center">Nome</th>
+                    <th class="text-center">Administração</th>
+                    <th class="text-center">Comum</th>
+                    <th colspan="2" class="text-center">Telefones com DDD</th>
                     <th class="text-center">E-mail</th>
+                    <th class="text-center">Oficialização</th>
                     <th class="text-center">Açoes</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr *ngFor="let interprete of interpretes"> 
+                    <td class="text-center" style="padding-top: 20px;">{{interprete.codigo}}</td>
+                    <td class="text-center" style="padding-top: 20px;">{{interprete.status}}</td>
                     <td class="text-center" style="padding-top: 20px;">{{interprete.nome}}</td>
+                    <td class="text-center" style="padding-top: 20px;">{{buscaAdministracao(interprete.idadministracao).nome}}</td>
+                    <td class="text-center" style="padding-top: 20px;">{{buscaComum(interprete.idcomum).nome}}</td>
+                    <td class="text-center" style="padding-top: 20px;">{{interprete.telefone1}}</td>
+                    <td class="text-center" style="padding-top: 20px;">{{interprete.telefone2}}</td>
                     <td class="text-center" style="padding-top: 20px;">{{interprete.email}}</td>
+                    <td class="text-center" style="padding-top: 20px;">{{interprete.oficializacao | date: 'MM/dd/yyyy'}}</td>
                     <td class="text-center m-mp-2">
                         <button type="button" (click)="selecion(interprete)" class="btn btn-success btn-sm m-1">
                             <i class="fa fa-edit"></i>

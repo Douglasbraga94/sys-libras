@@ -3,23 +3,20 @@
     <div class="card2 green" (click)="goToRegional()">
       <h2>Regioais</h2>
       <p>Cadastro de Regionais</p>
-      <img class="image" src="money.png" alt="" />
     </div>
 
     <div class="card2 blue" (click)="goToAdm()">
       <h2>Administração</h2>
       <p>Cadastro de Administração</p>
-      <img class="image" src="settings.png" alt="" />
     </div>
 
-    <div class="card2 red">
+    <div class="card2 red" (click)="goToComum()">
       <h2>Comum</h2>
       <p>Cadastro de Comum</p>
-      <img class="image" src="article.png" alt="" />
     </div>
   </div>
   
-  <div *ngIf="view == 'tableRegional' || view == 'tableAdm'" class="m-2" style="margin-left: 0px; padding-left: 0px;" >         
+  <div *ngIf="view == 'tableRegional' || view == 'tableAdm' || view == 'tableComum'" class="m-2" style="margin-left: 0px; padding-left: 0px;" >         
     <button type="button" (click)="backButton()" class="btn btn-secondary btn-sm m-1" >
         <i class="fa fa-chevron-circle-left"> Voltar</i>
     </button>
@@ -150,25 +147,25 @@
       <tbody>
         <tr *ngFor="let comum of comuns">
             <td class="text-center" style="padding-top: 20px">
-                {{ buscaRegional(comum.idadministracao) }}
+                {{ buscaRegional((buscaAdministracao(comum.idadministracao).idregional)).nome}}
               </td>
               <td class="text-center" style="padding-top: 20px">
-                {{ buscaAdministracao(comum.idadministracao) }}
+                {{ buscaAdministracao(comum.idadministracao).nome }}
               </td>              
           <td class="text-center" style="padding-top: 20px">
-            {{ administracao.nome }}
+            {{ comum.nome }}
           </td>
           <td class="text-center m-mp-2">
             <button
               type="button"
-              (click)="selecionAdm(administracao)"
+              (click)="selecionComum(comum)"
               class="btn btn-success btn-sm m-1"
             >
               <i class="fa fa-edit"></i>
             </button>
             <button
               type="button"
-              (click)="removeAdm(administracao)"
+              (click)="removeComum(comum)"
               class="btn btn-danger btn-sm"
             >
               <i class="fa fa-remove"></i>
@@ -231,6 +228,37 @@
         type="button"
         class="btn btn-primary btn-md"
         (click)="saveAdm()"
+      >
+        <i class="fa fa-check-circle"></i>
+        {{ edit ? "atualizar" : "Salvar" }}
+      </button>
+      <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
+        <i class="fa fa-window-close"></i>
+        Cancelar
+      </button>
+    </nb-card-footer>
+  </nb-card>
+
+
+  <!--PAGINA CADASTRO COMUM-->
+  <nb-card *ngIf="view == 'formComum'" status="success">
+    <nb-card-header>Dados Cadastrais</nb-card-header>
+    <nb-card-body>
+      <form [forGroup]="formComum">
+        <formly-form
+          [model]="modelComum"
+          [fields]="fieldsComum"
+          [form]="formComum"
+        ></formly-form>
+      </form>
+    </nb-card-body>
+
+    <nb-card-footer class="action-footer">
+      <button
+        [disabled]="!formComum.valid"
+        type="button"
+        class="btn btn-primary btn-md"
+        (click)="saveComum()"
       >
         <i class="fa fa-check-circle"></i>
         {{ edit ? "atualizar" : "Salvar" }}
