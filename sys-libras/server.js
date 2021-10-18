@@ -6,10 +6,10 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static(__dirname + 'dist/sys-libras'));
+app.use(express.static(__dirname + 'dist/app-estoque'));
 
 app.get('/*', (req, res)=>{
-    res.sendFile(__dirname + 'dist/sys-libras/index.html');
+    res.sendFile(__dirname + 'dist/app-estoque/index.html');
 });app.listen(PORT, () => {
     console.log(PORT);
 })
