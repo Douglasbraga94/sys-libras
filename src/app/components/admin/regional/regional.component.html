@@ -1,0 +1,273 @@
+<div class="p-1">
+  <div *ngIf="view == 'inicio'" class="row">
+    <div class="card2 green" (click)="goToRegional()">
+      <h2>Regioais</h2>
+      <p>Cadastro de Regionais</p>
+    </div>
+
+    <div class="card2 blue" (click)="goToAdm()">
+      <h2>Administração</h2>
+      <p>Cadastro de Administração</p>
+    </div>
+
+    <div class="card2 red" (click)="goToComum()">
+      <h2>Comum</h2>
+      <p>Cadastro de Comum</p>
+    </div>
+  </div>
+  
+  <div *ngIf="view == 'tableRegional' || view == 'tableAdm' || view == 'tableComum'" class="m-2" style="margin-left: 0px; padding-left: 0px;" >         
+    <button type="button" (click)="backButton()" class="btn btn-secondary btn-sm m-1" >
+        <i class="fa fa-chevron-circle-left"> Voltar</i>
+    </button>
+  </div>
+
+
+  <!--TELA INICIAL REGIONAL-->
+  <div *ngIf="view == 'tableRegional' || view == 'formRegional'" class="card col-lg-12">
+    
+    <div class="card-header">
+      <h3>
+        Congregação Cristã no Brasil - Cadastro de Regional
+        <button type="button" (click)="addRegional()" class="btn btn-outline-info btn-lg m-1">
+          <i class="fa fa-plus-circle"></i>
+        </button>
+      </h3>
+    </div>
+  </div>
+  <div *ngIf="view == 'tableRegional'" class="p-1 col-lg-12">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Açoes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let regional of regionais">
+          <td class="text-center" style="padding-top: 20px">
+            {{ regional.nome }}
+          </td>
+          <td class="text-center m-mp-2">
+            <button
+              type="button"
+              (click)="selecion(regional)"
+              class="btn btn-success btn-sm m-1"
+            >
+              <i class="fa fa-edit"></i>
+            </button>
+            <button
+              type="button"
+              (click)="remove(regional)"
+              class="btn btn-danger btn-sm"
+            >
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!--TELA INICIAL ADMINISTRAÇÃO-->
+<div *ngIf=" view == 'tableAdm' || view == 'formAdm' " class="card col-lg-12">
+    
+    <div class="card-header">
+      <h3>
+        Congregação Cristã no Brasil - Cadastro de Administração
+        <button type="button" (click)="addAdministracao()" class="btn btn-outline-info btn-lg m-1">
+          <i class="fa fa-plus-circle"></i>
+        </button>
+      </h3>
+    </div>
+  </div>
+  <div *ngIf="view == 'tableAdm'" class="p-1 col-lg-12">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-center">Regional</th>
+          <th class="text-center">Administração</th>
+          <th class="text-center">Açoes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let administracao of administracoes">
+            <td class="text-center" style="padding-top: 20px">
+                {{ buscaRegional(administracao.idregional).nome}}
+              </td>
+          <td class="text-center" style="padding-top: 20px">
+            {{ administracao.nome }}
+          </td>
+          <td class="text-center m-mp-2">
+            <button
+              type="button"
+              (click)="selecionAdm(administracao)"
+              class="btn btn-success btn-sm m-1"
+            >
+              <i class="fa fa-edit"></i>
+            </button>
+            <button
+              type="button"
+              (click)="removeAdm(administracao)"
+              class="btn btn-danger btn-sm"
+            >
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!--TELA INICIAL COMUM-->
+<div *ngIf="view == 'tableComum' || view == 'formComum'" class="card col-lg-12">
+    
+    <div class="card-header">
+      <h3>
+        Congregação Cristã no Brasil - Cadastro de Comum
+        <button type="button" (click)="addComum()" class="btn btn-outline-info btn-lg m-1">
+          <i class="fa fa-plus-circle"></i>
+        </button>
+      </h3>
+    </div>
+  </div>
+  <div *ngIf="view == 'tableComum'" class="p-1 col-lg-12">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-center">Regional</th>
+          <th class="text-center">Administração</th>
+          <th class="text-center">Comum</th>
+          <th class="text-center">Açoes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let comum of comuns">
+            <td class="text-center" style="padding-top: 20px">
+                {{ buscaRegional((buscaAdministracao(comum.idadministracao).idregional)).nome}}
+              </td>
+              <td class="text-center" style="padding-top: 20px">
+                {{ buscaAdministracao(comum.idadministracao).nome }}
+              </td>              
+          <td class="text-center" style="padding-top: 20px">
+            {{ comum.nome }}
+          </td>
+          <td class="text-center m-mp-2">
+            <button
+              type="button"
+              (click)="selecionComum(comum)"
+              class="btn btn-success btn-sm m-1"
+            >
+              <i class="fa fa-edit"></i>
+            </button>
+            <button
+              type="button"
+              (click)="removeComum(comum)"
+              class="btn btn-danger btn-sm"
+            >
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+
+
+  <!--PAGINA CADASTRO REGIONAL-->
+  <nb-card *ngIf="view == 'formRegional'" status="success">
+    <nb-card-header>Dados Cadastrais</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="form">
+        <formly-form
+          [model]="model"
+          [fields]="fields"
+          [form]="form"
+        ></formly-form>
+      </form>
+    </nb-card-body>
+
+    <nb-card-footer class="action-footer">
+      <button
+        [disabled]="!form.valid"
+        type="button"
+        class="btn btn-primary btn-md"
+        (click)="saveRegional()"
+      >
+        <i class="fa fa-check-circle"></i>
+        {{ edit ? "atualizar" : "Salvar" }}
+      </button>
+      <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
+        <i class="fa fa-window-close"></i>
+        Cancelar
+      </button>
+    </nb-card-footer>
+  </nb-card>
+
+
+  <!--PAGINA CADASTRO ADMINISTRAÇAO-->
+  <nb-card *ngIf="view == 'formAdm'" status="success">
+    <nb-card-header>Dados Cadastrais</nb-card-header>
+    <nb-card-body>
+      <form [forGroup]="formAdm">
+        <formly-form
+          [model]="modelAdm"
+          [fields]="fieldsAdm"
+          [form]="formAdm"
+        ></formly-form>
+      </form>
+    </nb-card-body>
+
+    <nb-card-footer class="action-footer">
+      <button
+        [disabled]="!formAdm.valid"
+        type="button"
+        class="btn btn-primary btn-md"
+        (click)="saveAdm()"
+      >
+        <i class="fa fa-check-circle"></i>
+        {{ edit ? "atualizar" : "Salvar" }}
+      </button>
+      <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
+        <i class="fa fa-window-close"></i>
+        Cancelar
+      </button>
+    </nb-card-footer>
+  </nb-card>
+
+
+  <!--PAGINA CADASTRO COMUM-->
+  <nb-card *ngIf="view == 'formComum'" status="success">
+    <nb-card-header>Dados Cadastrais</nb-card-header>
+    <nb-card-body>
+      <form [forGroup]="formComum">
+        <formly-form
+          [model]="modelComum"
+          [fields]="fieldsComum"
+          [form]="formComum"
+        ></formly-form>
+      </form>
+    </nb-card-body>
+
+    <nb-card-footer class="action-footer">
+      <button
+        [disabled]="!formComum.valid"
+        type="button"
+        class="btn btn-primary btn-md"
+        (click)="saveComum()"
+      >
+        <i class="fa fa-check-circle"></i>
+        {{ edit ? "atualizar" : "Salvar" }}
+      </button>
+      <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
+        <i class="fa fa-window-close"></i>
+        Cancelar
+      </button>
+    </nb-card-footer>
+  </nb-card>
+
+</div>
