@@ -13,6 +13,9 @@ import { Regionais } from 'src/app/models/regionais.model';
 import { RegionalService } from 'src/app/services/regional.service';
 import { Administracao } from 'src/app/models/administracao.model';
 import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner/public_api';
+//import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-interpretes',
@@ -34,6 +37,7 @@ export class InterpretesComponent implements OnInit {
 
 
   constructor(
+    private spinner:NgxSpinnerService,
     private toastService: NbToastrService,
     private interpretesService: InterpretesService,
     private regionalService: RegionalService,
@@ -50,9 +54,10 @@ export class InterpretesComponent implements OnInit {
     this.comunsSelect = dadosComum.data;
     this.regional = "Brasília";
     console.log(this.interpretesService);
+    this.spinner.show();
     this.interpretesService
       .getAll(10)
-      .then((dados) => this.interpretes = dados.data);
+      .then((dados) => {this.interpretes = dados.data; this.spinner.hide();});
     this.buildForm();
     this.view = 'table';
   }
