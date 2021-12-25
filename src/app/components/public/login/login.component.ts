@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.spinner.hide();
       }else{
         localStorage.setItem('@sys-libras:user', value.user.email);
-        this.router.navigateByUrl('/admin/dashboard');
+        this.router.navigateByUrl('/admin/dashboard/home');
         this.spinner.hide();
       }
     })
