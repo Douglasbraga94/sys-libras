@@ -1,3 +1,4 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { BaseModule } from './../../../shared/base/base.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ import { InterpretesComponent } from './interpretes.component';
   ],
   imports: [
     BaseModule,
-    InterpretesRoutingModule
+    InterpretesRoutingModule,
+    NgxSpinnerModule
   ]
 })
 export class InterpretesModule { }

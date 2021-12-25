@@ -1,3 +1,4 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +9,8 @@ import { AdministracaoRoutingModule } from './administracao-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    AdministracaoRoutingModule
+    AdministracaoRoutingModule,
+    NgxSpinnerModule
   ]
 })
 export class AdministracaoModule { }

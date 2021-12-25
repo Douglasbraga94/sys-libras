@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Comum } from './../../../models/comum.model';
 import { Administracao } from './../../../models/administracao.model';
 import { ComumService } from './../../../services/comum.service';
@@ -35,6 +36,7 @@ export class RegionalComponent implements OnInit {
 
 
   constructor(
+    private spinner:NgxSpinnerService,
     private toastService: NbToastrService,
     private regionalService: RegionalService,
     private administracaoService: AdministracaoService,
@@ -42,6 +44,7 @@ export class RegionalComponent implements OnInit {
   ) { }
 
   async ngOnInit(){
+    this.spinner.show();
     const {data} = await this.regionalService.getAll();
     this.regionaisSelect = data;
     const dados = await this.administracaoService.getAll();
@@ -54,7 +57,7 @@ export class RegionalComponent implements OnInit {
     .then((dados)=> this.administracoes = dados.data);    
     this.comumService
     .getAll(10)
-    .then((dados)=> this.comuns = dados.data); 
+    .then((dados)=> {this.comuns = dados.data; this.spinner.hide();}); 
     this.buildForm();
     this.buildFormAdm();
     this.buildFormComum();

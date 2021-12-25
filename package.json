@@ -26,6 +26,7 @@
     "@ngx-formly/bootstrap": "^5.0.0",
     "@ngx-formly/core": "^5.0.0",
     "@supabase/supabase-js": "^1.24.0",
+    "@swimlane/ngx-charts": "^17.0.1",
     "bootstrap": "^5.1.2",
     "bootswatch": "^5.1.2",
     "eva-icons": "^1.1.2",

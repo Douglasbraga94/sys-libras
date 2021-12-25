@@ -1,3 +1,4 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { BaseModule } from './../../../shared/base/base.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ import { RegionalComponent } from './regional.component';
   ],
   imports: [
     BaseModule,
-    RegionalRoutingModule
+    RegionalRoutingModule,
+    NgxSpinnerModule
   ]
 })
 export class RegionalModule { }
